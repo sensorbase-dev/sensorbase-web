@@ -23,12 +23,31 @@ function getDevices(runOnReadyStateChange) {
     this.getSensorBaseQuery("/devices", runOnReadyStateChange);
 }
 
+function getDevice(hardwareHexUid, runOnReadyStateChange) {
+    this.getSensorBaseQuery(
+        `/devices/${hardwareHexUid}`,
+        runOnReadyStateChange
+    );
+}
+
 function getSensors(runOnReadyStateChange) {
     this.getSensorBaseQuery("/sensors", runOnReadyStateChange);
 }
 
+function getComponent(componentId, runOnReadyStateChange) {
+    this.getSensorBaseQuery(`/sensors/${componentId}`, runOnReadyStateChange)
+}
+
+function getComponents(hardwareHexUid, runOnReadyStateChange) {
+    this.getSensorBaseQuery(`/devices/${hardwareHexUid}/components`, runOnReadyStateChange);
+}
+
 function getSensorReadings(runOnReadyStateChange) {
     this.getSensorBaseQuery("/sensor-readings", runOnReadyStateChange);
+}
+
+function getSensorReadingsByComponentId(componentId, runOnReadyStateChange) {
+    this.getSensorBaseQuery(`/sensors/${componentId}/sensor-readings`, runOnReadyStateChange);
 }
 
 /* 

@@ -29,7 +29,7 @@ function populateDeviceCardDeck(devices) {
 
         let cardLink = document.createElement("a");
         cardLink.setAttribute("class", "stretched-link");
-        cardLink.setAttribute("href", `device.html?id=${devices[i].hardwareUidHex}`)
+        cardLink.setAttribute("href", `device.html?hwuid=${devices[i].hardwareUidHex}`)
 
         deviceCardDeck = document.getElementById("deviceCardDeck");
         deviceCardDeck.appendChild(cardDiv);

@@ -41,14 +41,14 @@ function populateSensorTable(sensors) {
     for (var i = 0; i < sensors.length; i++) {
         //console.log(sensors[i]);
         var sensorRow = document.createElement("tr");
-        var sensorId = document.createElement("td");
+        var componentId = document.createElement("td");
         var componentNumber = document.createElement("td");
         var hardwareUidHex = document.createElement("td");
         var deviceName = document.createElement("td");
         var inputType = document.createElement("td");
         var lastUplink = document.createElement("td");
 
-        sensorId.innerHTML = sensors[i].sensorId;
+        componentId.innerHTML = sensors[i].componentId;
         componentNumber.innerHTML = sensors[i].componentNumber;
         hardwareUidHex.innerHTML = sensors[i].parentDevice.hardwareUidHex;
         deviceName.innerHTML = sensors[i].parentDevice.name;
@@ -57,7 +57,7 @@ function populateSensorTable(sensors) {
 
         sensorTable = document.getElementById("sensorTable");
         sensorTable.appendChild(sensorRow);
-        sensorRow.appendChild(sensorId);
+        sensorRow.appendChild(componentId);
         sensorRow.appendChild(componentNumber);
         sensorRow.appendChild(hardwareUidHex);
         sensorRow.appendChild(deviceName);
@@ -71,14 +71,14 @@ function populateSensorReadingTable(sensorReadings) {
         //console.log(sensorReadings[i]);
         var sensorReadingRow = document.createElement("tr");
         var sensorReadingId = document.createElement("td");
-        var sensorId = document.createElement("td");
+        var componentId = document.createElement("td");
         var deviceName = document.createElement("td");
         var inputType = document.createElement("td");
         var value = document.createElement("td");
         var time = document.createElement("td");
 
         sensorReadingId.innerHTML = sensorReadings[i].sensorReadingId;
-        sensorId.innerHTML = sensorReadings[i].sensor.sensorId;
+        componentId.innerHTML = sensorReadings[i].sensor.componentId;
         deviceName.innerHTML = sensorReadings[i].sensor.parentDevice.name;
         inputType.innerHTML = sensorReadings[i].sensor.inputType;
         value.innerHTML = sensorReadings[i].value;
@@ -87,7 +87,7 @@ function populateSensorReadingTable(sensorReadings) {
         sensorReadingTable = document.getElementById("sensorReadingTable");
         sensorReadingTable.appendChild(sensorReadingRow);
         sensorReadingRow.appendChild(sensorReadingId);
-        sensorReadingRow.appendChild(sensorId);
+        sensorReadingRow.appendChild(componentId);
         sensorReadingRow.appendChild(deviceName);
         sensorReadingRow.appendChild(inputType);
         sensorReadingRow.appendChild(value);
