@@ -10,7 +10,7 @@ function populateDeviceCardDeck(devices) {
         //console.log(devices[i]);
         let cardDiv = document.createElement("div");
         cardDiv.setAttribute("class", "card mb-3");
-        cardDiv.setAttribute("style", "min-width: 12rem;");
+        cardDiv.setAttribute("style", "min-width: 13rem;");
 
         let cardImg = document.createElement("img");
         cardImg.setAttribute("class", "card-img=top");

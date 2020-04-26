@@ -36,21 +36,35 @@
     <div class="py-5 text-center">
       <img class="d-block mx-auto mb-4" src="img/logo.svg" alt="" width="72" height="72">
       <h2>API test queries</h2>
-      <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+      <p class="lead">Queries that aren't ready for the big screen yet.</p>
     </div>
     
     <div class="row">
-      <h3>Add Device</h3>
+      <h3>Add alert</h3>
     </div>
    
     <div class="row">
+    
       <form>
-        HardwareUid (64-bit, hexadecimal): 
-        <input type="text" id="hardwareUidHex" value="DEADBEEFDEADBEEF"><br>
-        deviceName (string):
-        <input type="text" id ="deviceName" value="SensorBase front-end test device #1"><br>
-        <input type="button" class="btn btn-primary btnSeccion"
-        value="Submit query" onclick="addTestDevice();//postSensorBaseQuery();"><br>
+        <div class="form-group">
+          <label for="componentId">Email address (String):</label>
+          <input class="form-control" type="text" id="emailAddress" value="">
+        </div><div class="form-group">
+          <label for="componentId">componentId (Long):</label>
+          <input class="form-control" type="text" id="componentId" value="">
+        </div>
+        <div class="form-group">
+          <label for="condition-selector">Condition: </label>
+          <select class="form-control" id="condition-selector">
+            <option>ABOVE</option>
+            <option>BELOW</option>
+          </select>
+        </div>
+        <div class="form-group">
+         <label for="threshold">Threshold value (double):</label>
+         <input class="form-control" type="text" id ="threshold" value=""><br>
+        </div>
+        <input type="button" class="btn btn-primary btnSeccion" value="Submit" onclick="addAlert();//postSensorBaseQuery();"><br>
       </form>
     </div>
     <!-- 
@@ -98,20 +112,22 @@
   <script src="form-validation.js"></script>
   <script src="js/sensorbase-rest.js"></script>
   <script>
-    function addTestDevice() {
-      var hardwareUidHex = document.getElementById("hardwareUidHex").value;
-      var hardwareUid_value = parseInt(hardwareUidHex, 16);
-      var deviceName_value = document.getElementById("deviceName").value;
+    function addAlert() {
+      let emailAddress = document.getElementById('emailAddress').value;
+      let componentId = document.getElementById("componentId").value;
+      let alertCondition = document.getElementById("condition-selector").value;
+      let threshold = document.getElementById("threshold").value;
 
-      var testDevice = {
-        hardwareUid : hardwareUid_value,
-        name : deviceName_value
+      let alert = {
+        emailAddress : emailAddress,
+        alertCondition : alertCondition,
+        threshold : threshold 
       }
       
-      var testDeviceJSON = JSON.stringify(testDevice);
-      console.log(testDeviceJSON);
+      var alertJSON = JSON.stringify(alert);
+      console.log(alert);
 
-      postSensorBaseQuery(testDeviceJSON, "/devices", printPostResponse);
+      postSensorBaseQuery(alertJSON, `/sensors/${componentId}/alerts`, printPostResponse);
     }
 
     var printPostResponse = function (postResponse) {
