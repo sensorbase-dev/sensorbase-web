@@ -1,3 +1,5 @@
+feather.replace();
+
 const API_BASE_URL = "https://sensorbase.kf03w5t5741l.net/api";
 //const API_BASE_URL = "http://localhost:9500/api";
 
