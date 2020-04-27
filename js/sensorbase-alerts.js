@@ -3,6 +3,9 @@ $( document ).ready(function() {
   if (document.getElementById("alertCardDeck") != null) {
     getAlerts(populateAlertCardDeck);
   }
+  if (document.getElementById("alertSensorSelector") != null) {
+    getSensors(populateAlertModalSensorSelector);
+  }
 });
 
 function populateAlertCardDeck(alerts) {
@@ -87,9 +90,20 @@ function populateAlertCardDeck(alerts) {
   }
 }
 
+function populateAlertModalSensorSelector(sensors) {
+  let alertSensorSelector = document.getElementById('alertSensorSelector');
+  for (var i = 0; i < sensors.length; i++) {
+    console.log(sensors[i]);
+    let option = document.createElement("option");
+    option.setAttribute('value', `${sensors[i].componentId}`)
+    option.innerHTML = `${sensors[i].inputType} #${sensors[i].componentNumber} on ${sensors[i].parentDevice.name}`;
+    alertSensorSelector.appendChild(option);
+  }
+}
+
 function addAlert() {
   let emailAddress = document.getElementById('emailAddress').value;
-  let componentId = document.getElementById("componentId").value;
+  let componentId = document.getElementById("alertSensorSelector").value;
   let alertCondition = document.getElementById("conditionselector").value;
   let threshold = document.getElementById("threshold").value;
   
