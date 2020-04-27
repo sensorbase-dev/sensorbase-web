@@ -49,9 +49,7 @@ function populateAlertCardDeck(alerts) {
               </div>
               <div class="modal-body">
                 <form>
-                    <h5>${alerts[i].sensor.inputType} #${alerts[i].sensor.componentNumber}</h5>
-                    <h5 id="componentId-${alerts[i].alertId}">${alerts[i].sensor.componentId}</h5>
-                    <h5>${alerts[i].sensor.parentDevice.name}</h5>
+                    <h5>${alerts[i].sensor.inputType} #${alerts[i].sensor.componentNumber} on ${alerts[i].sensor.parentDevice.name}</h5>
                   <div class="form-group">
                     <label for="emailAddress">Email address (String):</label>
                     <input class="form-control" type="text" id="emailAddress-${alerts[i].alertId}" value="${alerts[i].emailAddress}">
