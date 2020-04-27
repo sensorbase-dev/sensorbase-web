@@ -32,8 +32,16 @@ function getDevice(hardwareHexUid, runOnReadyStateChange) {
     );
 }
 
+function getSensor(componentId, runOnReadyStateChange) {
+    this.getSensorBaseQuery(`/sensors/${componentId}`, runOnReadyStateChange);
+}
+
 function getSensors(runOnReadyStateChange) {
     this.getSensorBaseQuery("/sensors", runOnReadyStateChange);
+}
+
+function getAlerts(runOnReadyStateChange) {
+    this.getSensorBaseQuery("/alerts", runOnReadyStateChange);
 }
 
 function getComponent(componentId, runOnReadyStateChange) {
@@ -68,4 +76,36 @@ function postSensorBaseQuery(object, endpoint, runOnReadyStateChange) {
     http.open("POST", API_BASE_URL + endpoint);
     http.setRequestHeader("Content-Type", "application/json");
     http.send(object);
+}
+
+/*
+ * HTTP PUT block
+ */
+function putSensorBaseQuery(object, endpoint, runOnReadyStateChange) {
+    var http = new XMLHttpRequest();
+    http.onreadystatechange = function () {
+        if (this.readyState == XMLHttpRequest.DONE) {
+            var responseObjects = JSON.parse(this.responseText);
+            runOnReadyStateChange(responseObjects);
+        }
+    }
+
+    http.open("PUT", API_BASE_URL + endpoint);
+    http.setRequestHeader("Content-Type", "application/json");
+    http.send(object);
+}
+/*
+ * HTTP DELETE block
+ */
+function deleteSensorBaseQuery(endpoint, runOnReadyStateChange) {
+    var http = new XMLHttpRequest();
+    http.onreadystatechange = function () {
+        if (this.readyState == XMLHttpRequest.DONE) {
+            runOnReadyStateChange();
+        }
+    }
+
+    http.open("DELETE", API_BASE_URL + endpoint);
+    http.setRequestHeader("Content-Type", "application/json");
+    http.send();
 }
